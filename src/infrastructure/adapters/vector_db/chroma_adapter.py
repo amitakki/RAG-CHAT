@@ -1,6 +1,5 @@
 from typing import List, Optional
 import chromadb
-from chromadb.config import Settings as ChromaSettings
 
 from src.domain.entities import Document, Embedding
 from src.application.interfaces.vector_db_port import VectorDBPort
@@ -22,10 +21,8 @@ class ChromaDBAdapter(VectorDBPort):
         """
         try:
             self.client = chromadb.HttpClient(
-                Settings(
-                    chroma_server_host=host,
-                    chroma_server_port=port
-                )
+                host = host,
+                port = port,
             )
             
             # Get or create collection

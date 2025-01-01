@@ -12,6 +12,7 @@ class Container(containers.DeclarativeContainer):
     Dependency Injection container using dependency-injector.
     Manages the creation and lifecycle of all application components.
     """
+
     # Configuration
     config = providers.Singleton(Settings)
 

@@ -24,6 +24,7 @@ class StreamlitApp:
     def __init__(self):
         # Initialize container and settings
         self.container = Container()
+        self.settings = Settings()
         self.container.config()
         
         # Initialize use cases
