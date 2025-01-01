@@ -1,0 +1,18 @@
+# Documentation dependencies
+-r base.txt
+
+# Documentation generation
+sphinx>=7.2.6
+sphinx-rtd-theme>=1.3.0
+sphinx-autodoc-typehints>=1.25.2
+sphinx-copybutton>=0.5.2
+myst-parser>=2.0.0
+linkify-it-py>=2.0.2
+
+# API documentation
+spectree>=1.1.3
+openapi-spec-validator>=0.7.1
+
+# Document processing for examples
+pandoc>=2.3
+jupyter-book>=0.15.1

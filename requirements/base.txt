@@ -1,0 +1,40 @@
+# Core dependencies required for both development and production
+
+# FastAPI for API framework
+fastapi>=0.104.1
+
+# Pydantic for data validation
+# Pydantic for data validation
+pydantic>=2.5.2
+pydantic-settings>=2.5.2
+
+# ASGI server
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+
+# Dependency Injection
+dependency-injector>=4.41.0
+
+# Database and Storage
+motor>=3.3.1  # MongoDB async driver
+chromadb>=0.4.17  # Vector database
+pymongo>=4.6.0
+
+# LLM Integration
+openai>=1.3.5  # OpenAI API client
+
+# Streamlit for UI
+streamlit>=1.29.0
+
+# Utility packages
+python-dotenv>=1.0.0  # Environment variable management
+loguru>=0.7.2  # Enhanced logging
+tenacity>=8.2.3  # Retry logic
+anyio>=4.1.0  # Async utilities
+httpx>=0.25.2  # HTTP client
+
+# Document processing
+python-docx>=1.0.1  # Word document processing
+PyPDF2>=3.0.1  # PDF processing
+beautifulsoup4>=4.12.2  # HTML processing
+markdown>=3.5.1  # Markdown processing

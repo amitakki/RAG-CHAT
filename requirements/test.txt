@@ -1,0 +1,22 @@
+# Testing dependencies
+-r base.txt
+
+# Testing frameworks
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+pytest-sugar>=0.9.7
+pytest-xdist>=3.5.0  # Parallel testing
+pytest-timeout>=2.2.0
+pytest-clarity>=1.0.1  # Better test output
+pytest-randomly>=3.15.0  # Random test ordering
+
+# Test utilities
+factory-boy>=3.3.0  # Test data generation
+faker>=20.1.0  # Fake data generation
+freezegun>=1.2.2  # Time freezing
+responses>=0.24.1  # Mock HTTP responses
+aioresponses>=0.7.4  # Mock async HTTP responses
+asynctest>=0.13.0  # Async testing utilities
+coverage>=7.3.2  # Code coverage
