@@ -1,12 +1,10 @@
-from typing import List
-from fastapi import HTTPException, Depends
-from src.domain.entities import Message, Document
+from fastapi import HTTPException
+from src.domain.entities import Document
 from src.application.use_cases.chat_completion import ChatCompletionUseCase
 from src.application.use_cases.document_ingestion import DocumentIngestionUseCase
 from src.application.exceptions import (
     LLMException,
-    VectorDBException,
-    ChatRepositoryException
+    VectorDBException
 )
 
 class ChatHandler:
