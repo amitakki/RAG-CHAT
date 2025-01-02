@@ -6,7 +6,7 @@ A production-ready implementation of a RAG (Retrieval Augmented Generation) chat
 
 This project follows Clean Architecture principles, organizing code into concentric layers with dependencies pointing inward. Each layer has a specific responsibility and is isolated from the others through well-defined interfaces.
 
-![RAG-Chat Architectural Diagram](https://miro.medium.com/v2/resize:fit:828/format:webp/0*CPdBD50_pGdZULyX)
+![RAG-Chat Architectural Diagram](images/clean-diagram.webp)
 
 ### Architectural Layers
 
@@ -55,6 +55,12 @@ Handles user interaction and API endpoints.
 - Input validation
 
 **Location:** `src/presentation/`
+
+### Component Interaction Diagram
+![RAG-Chat Component Diagram](images/component-diagram.png)
+
+### Class Diagram
+![RAG-Chat Class Diagram](images/class-diagram.png)
 
 ## 🔧 Technical Stack
 
