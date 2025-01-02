@@ -8,6 +8,7 @@ from src.domain.value_objects.message_type import MessageType
 from src.application.interfaces.chat_repository_port import ChatRepositoryPort
 from src.application.exceptions import ChatRepositoryException
 
+
 class MongoDBChatRepository(ChatRepositoryPort):
     """
     MongoDB implementation of the ChatRepositoryPort.
@@ -16,7 +17,7 @@ class MongoDBChatRepository(ChatRepositoryPort):
     def __init__(self, uri: str, database: str):
         """
         Initialize MongoDB connection.
-        
+
         Args:
             uri: MongoDB connection URI
             database: Database name to use
@@ -25,21 +26,23 @@ class MongoDBChatRepository(ChatRepositoryPort):
             self.client = motor.motor_asyncio.AsyncIOMotorClient(uri)
             self.db = self.client[database]
             self.sessions = self.db.chat_sessions
-        
+
         except Exception as e:
-            raise ChatRepositoryException(f"Error connecting to MongoDB: {str(e)}")
+            raise ChatRepositoryException(
+                f"Error connecting to MongoDB: {str(e)}")
 
     async def save_session(self, session: ChatSession) -> None:
         """
         Saves or updates a chat session in MongoDB.
-        
+
         Args:
             session: ChatSession entity to save
         """
         try:
             # Convert session to dictionary
             session_dict = {
-                "messages": [self._message_to_dict(msg) for msg in session.messages],
+                "messages": [self._message_to_dict(msg)
+                             for msg in session.messages],
                 "metadata": session.metadata,
                 "created_at": session.created_at,
                 "last_activity": datetime.utcnow()
@@ -58,10 +61,10 @@ class MongoDBChatRepository(ChatRepositoryPort):
     async def get_session(self, session_id: str) -> Optional[ChatSession]:
         """
         Retrieves a chat session by ID.
-        
+
         Args:
             session_id: ID of the session to retrieve
-        
+
         Returns:
             Optional[ChatSession]: The retrieved session or None if not found
         """
@@ -76,18 +79,19 @@ class MongoDBChatRepository(ChatRepositoryPort):
             return self._dict_to_session(session_dict)
 
         except Exception as e:
-            raise ChatRepositoryException(f"Error retrieving session: {str(e)}")
+            raise ChatRepositoryException(
+                f"Error retrieving session: {str(e)}")
 
     async def delete_session(self, session_id: str) -> None:
         """
         Deletes a chat session.
-        
+
         Args:
             session_id: ID of the session to delete
         """
         try:
             await self.sessions.delete_one({"_id": ObjectId(session_id)})
-        
+
         except Exception as e:
             raise ChatRepositoryException(f"Error deleting session: {str(e)}")
 
@@ -98,11 +102,11 @@ class MongoDBChatRepository(ChatRepositoryPort):
     ) -> List[ChatSession]:
         """
         Lists chat sessions with pagination.
-        
+
         Args:
             limit: Maximum number of sessions to return
             offset: Number of sessions to skip
-        
+
         Returns:
             List[ChatSession]: List of chat sessions
         """

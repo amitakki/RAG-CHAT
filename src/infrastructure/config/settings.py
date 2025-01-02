@@ -9,9 +9,12 @@ class Settings(BaseSettings):
     Loads configuration from environment variables with fallbacks.
     """
     # OpenAI Configuration
-    openai_api_key: str = Field(..., env='OPENAI_API_KEY')  # Required
-    openai_model: str = Field('gpt-4', env='OPENAI_MODEL')  # Optional with default
-    openai_embedding_model: str = Field('text-embedding-ada-002', env='OPENAI_EMBEDDING_MODEL')
+    # Required
+    openai_api_key: str = Field(..., env='OPENAI_API_KEY')
+    # Optional with default
+    openai_model: str = Field('gpt-4', env='OPENAI_MODEL')
+    openai_embedding_model: str = Field('text-embedding-ada-002',
+                                        env='OPENAI_EMBEDDING_MODEL')
 
     # ChromaDB Configuration
     chroma_host: str = Field('localhost', env='CHROMA_HOST')
@@ -24,7 +27,9 @@ class Settings(BaseSettings):
     # Additional Fields
     log_level: str = Field('INFO', env='LOG_LEVEL')
     rate_limit: int = Field(100, env='RATE_LIMIT')
-    allowed_origins: List[str] = Field(['http://localhost:3000', 'http://localhost:8000'], env='ALLOWED_ORIGINS')
+    allowed_origins: List[str] = Field(['http://localhost:3000',
+                                        'http://localhost:8000'],
+                                       env='ALLOWED_ORIGINS')
 
     class Config:
         env_file = '.env'

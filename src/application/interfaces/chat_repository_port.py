@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Optional, List
 from src.domain.entities import ChatSession
 
+
 class ChatRepositoryPort(ABC):
     """
     Port interface for chat session persistence operations.
@@ -23,6 +24,7 @@ class ChatRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_sessions(self, limit: int = 10, offset: int = 0) -> List[ChatSession]:
+    async def list_sessions(self, limit: int = 10,
+                            offset: int = 0) -> List[ChatSession]:
         """Lists chat sessions with pagination"""
         pass

@@ -7,6 +7,7 @@ from src.application.exceptions import (
     VectorDBException
 )
 
+
 class ChatHandler:
     """
     Handles chat-related API endpoints.
@@ -27,14 +28,14 @@ class ChatHandler:
     ) -> MessageResponse:
         """
         Handles message sending and response generation.
-        
+
         Args:
             session_id: ID of the chat session
             request: Validated message request
-            
+
         Returns:
             MessageResponse: The generated response
-            
+
         Raises:
             HTTPException: If an error occurs during processing
         """
@@ -89,10 +90,10 @@ class ChatHandler:
     ) -> None:
         """
         Handles document ingestion for RAG.
-        
+
         Args:
             request: Validated document request
-            
+
         Raises:
             HTTPException: If an error occurs during ingestion
         """
@@ -102,7 +103,7 @@ class ChatHandler:
                 source=request.source,
                 metadata=request.metadata
             )
-            
+
             await self.document_ingestion.execute(
                 documents=[document],
                 chunk_size=request.chunk_size

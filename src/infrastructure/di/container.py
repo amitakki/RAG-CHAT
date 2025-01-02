@@ -7,6 +7,7 @@ from src.application.services.prompt_service import PromptService
 from src.application.use_cases.chat_completion import ChatCompletionUseCase
 from src.application.use_cases.document_ingestion import DocumentIngestionUseCase
 
+
 class Container(containers.DeclarativeContainer):
     """
     Dependency Injection container using dependency-injector.

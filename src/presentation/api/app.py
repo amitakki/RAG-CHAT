@@ -4,6 +4,7 @@ from .routes import router
 from .middleware import LoggingMiddleware, RateLimitMiddleware
 from src.infrastructure.di.container import Container
 
+
 def create_app() -> FastAPI:
     """
     Factory function to create and configure the FastAPI application.

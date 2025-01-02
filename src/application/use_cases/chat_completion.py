@@ -1,11 +1,11 @@
-from typing import Optional, List
-from datetime import datetime
+from typing import Optional
 from src.domain.entities import Message, ChatSession
 from src.domain.value_objects.message_type import MessageType
 from src.application.interfaces.llm_port import LLMPort
 from src.application.interfaces.vector_db_port import VectorDBPort
 from src.application.interfaces.chat_repository_port import ChatRepositoryPort
 from src.application.services.prompt_service import PromptService
+
 
 class ChatCompletionUseCase:
     """
@@ -64,10 +64,10 @@ class ChatCompletionUseCase:
         )
 
         # Construct prompt with context
-        context_enhanced_prompt = self.prompt_service.construct_prompt_with_context(
-            user_input=user_input,
-            relevant_docs=relevant_docs
-        )
+        context_enhanced_prompt = \
+            self.prompt_service.construct_prompt_with_context(
+                user_input=user_input,
+                relevant_docs=relevant_docs)
 
         # Generate response
         response = await self.llm.generate_response(

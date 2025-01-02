@@ -4,6 +4,7 @@ from datetime import datetime
 from uuid import uuid4
 from .message import Message
 
+
 @dataclass
 class ChatSession:
     """

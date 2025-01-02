@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import List, Dict
 from uuid import uuid4
 
+
 @dataclass
 class Embedding:
     """
@@ -15,5 +16,6 @@ class Embedding:
 
     def __post_init__(self):
         """Validates the embedding vector"""
-        if not isinstance(self.vector, list) or not all(isinstance(x, float) for x in self.vector):
+        if not isinstance(self.vector, list) or \
+           not all(isinstance(x, float) for x in self.vector):
             raise ValueError("Vector must be a list of float values")

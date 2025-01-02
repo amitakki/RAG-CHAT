@@ -2,13 +2,15 @@ from abc import ABC, abstractmethod
 from typing import List, Optional
 from src.domain.entities import Document, Embedding
 
+
 class VectorDBPort(ABC):
     """
     Port interface for vector database operations.
     Abstracts the underlying vector database implementation.
     """
     @abstractmethod
-    async def store_embedding(self, document: Document, embedding: Embedding) -> None:
+    async def store_embedding(self, document: Document,
+                              embedding: Embedding) -> None:
         """Stores a document and its embedding in the vector database"""
         pass
 
@@ -21,7 +23,7 @@ class VectorDBPort(ABC):
     ) -> List[Document]:
         """
         Searches for similar documents based on embedding similarity.
-        
+
         Args:
             embedding: Query embedding to search with
             limit: Maximum number of results to return

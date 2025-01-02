@@ -1,7 +1,6 @@
 import streamlit as st
 import asyncio
 import logging
-from typing import List, Optional
 from datetime import datetime
 import uuid
 
@@ -17,9 +16,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class StreamlitApp:
+
+
     """
     Main Streamlit application class that handles the UI and interaction logic.
-    This class maintains clean architecture by delegating business logic to use cases.
+    This class maintains clean architecture by delegating business logic to usecases.
     """
     def __init__(self):
         # Initialize container and settings

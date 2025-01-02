@@ -1,7 +1,7 @@
-from typing import List, Optional, Dict
+from typing import Optional, Dict
 from datetime import datetime
 from pydantic import BaseModel, Field, validator
-from src.domain.entities import MessageType
+
 
 class MessageRequest(BaseModel):
     """
@@ -33,6 +33,7 @@ class MessageRequest(BaseModel):
             raise ValueError("Message content cannot be empty")
         return v.strip()
 
+
 class MessageResponse(BaseModel):
     """Response model for messages returned by the API"""
     id: str
@@ -54,6 +55,7 @@ class MessageResponse(BaseModel):
             }
         }
 
+
 class DocumentRequest(BaseModel):
     """Request model for document ingestion"""
     content: str = Field(..., description="The document content")
@@ -67,6 +69,7 @@ class DocumentRequest(BaseModel):
         description="Size of chunks for document splitting",
         gt=100
     )
+
 
 class ErrorResponse(BaseModel):
     """Standardized error response model"""

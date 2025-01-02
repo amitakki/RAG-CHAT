@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class MessageType(Enum):
     """
     Value object representing different types of messages in the system.

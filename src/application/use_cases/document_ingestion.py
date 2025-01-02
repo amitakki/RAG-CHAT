@@ -3,6 +3,7 @@ from src.domain.entities import Document
 from src.application.interfaces.llm_port import LLMPort
 from src.application.interfaces.vector_db_port import VectorDBPort
 
+
 class DocumentIngestionUseCase:
     """
     Use case for ingesting documents into the RAG system.
@@ -20,7 +21,7 @@ class DocumentIngestionUseCase:
         """
         Processes and stores documents with their embeddings.
         Optionally chunks documents for better retrieval.
-        
+
         Args:
             documents: List of documents to process
             chunk_size: Optional size for document chunking
@@ -53,13 +54,13 @@ class DocumentIngestionUseCase:
         """
         content = document.content
         chunks = []
-        
+
         # Split content into overlapping chunks
         for i in range(0, len(content), chunk_size - overlap):
             chunk_content = content[i:i + chunk_size]
             if len(chunk_content) < chunk_size // 2:  # Skip small final chunks
                 continue
-                
+
             chunk = Document(
                 content=chunk_content,
                 source=document.source,

@@ -1,6 +1,7 @@
 from typing import List
 from src.domain.entities import Document
 
+
 class PromptService:
     """
     Service for constructing and managing prompts.
@@ -14,19 +15,19 @@ class PromptService:
     ) -> str:
         """
         Constructs a prompt by combining user input with relevant context.
-        
+
         Args:
             user_input: The user's question or input
             relevant_docs: List of relevant documents for context
             max_context_length: Maximum length of combined context
-            
+
         Returns:
             str: The constructed prompt with context
         """
         # Combine relevant document content
         context_parts = [doc.content for doc in relevant_docs]
         combined_context = "\n\n".join(context_parts)
-        
+
         # Truncate context if too long while preserving whole sentences
         if len(combined_context) > max_context_length:
             combined_context = self._truncate_to_sentences(
@@ -41,7 +42,7 @@ class PromptService:
             "Answer the following question:\n"
             "{question}"
         )
-        
+
         return prompt_template.format(
             context=combined_context,
             question=user_input

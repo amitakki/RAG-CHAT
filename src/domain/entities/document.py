@@ -3,6 +3,7 @@ from typing import List, Dict, Optional
 from uuid import uuid4
 from .embedding import Embedding
 
+
 @dataclass
 class Document:
     """
@@ -22,4 +23,5 @@ class Document:
 
     def get_embedding_by_model(self, model: str) -> Optional[Embedding]:
         """Retrieves an embedding for a specific model"""
-        return next((emb for emb in self.embeddings if emb.model == model), None)
+        return next((emb for emb in self.embeddings
+                     if emb.model == model), None)

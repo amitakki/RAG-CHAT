@@ -1,5 +1,5 @@
 import openai
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 from datetime import datetime
 
 from src.domain.entities import Message, Embedding
@@ -16,7 +16,7 @@ class OpenAIAdapter(LLMPort):
     def __init__(self, api_key: str, model: str, embedding_model: str):
         """
         Initialize the OpenAI adapter with necessary configuration.
-        
+
         Args:
             api_key: OpenAI API key
             model: Model to use for chat completions
@@ -34,12 +34,12 @@ class OpenAIAdapter(LLMPort):
     ) -> Message:
         """
         Generates a response using OpenAI's chat completion API.
-        
+
         Args:
             messages: List of conversation messages
             temperature: Controls randomness in the response
             max_tokens: Maximum length of the generated response
-        
+
         Returns:
             Message: The generated response as a Message entity
         """
@@ -80,10 +80,10 @@ class OpenAIAdapter(LLMPort):
     async def generate_embedding(self, text: str) -> Embedding:
         """
         Generates embeddings using OpenAI's embedding API.
-        
+
         Args:
             text: Text to generate embedding for
-        
+
         Returns:
             Embedding: The generated embedding vector
         """

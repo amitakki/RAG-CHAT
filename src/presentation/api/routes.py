@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Header
-from typing import Optional
+from fastapi import APIRouter, Depends
 from dependency_injector.wiring import inject, Provide
 from src.infrastructure.di.container import Container
 from .handlers import ChatHandler
@@ -17,8 +16,9 @@ router = APIRouter(
     responses={
         500: {"model": ErrorResponse},
         503: {"model": ErrorResponse}
-    }   
+    }
 )
+
 
 @router.post(
     "/chat/{session_id}/messages",
@@ -34,15 +34,16 @@ async def send_message(
 ) -> MessageResponse:
     """
     Send a message in a chat session and get a response.
-    
+
     Parameters:
         session_id: Unique identifier for the chat session
         request: Message content and optional parameters
-        
+
     Returns:
         MessageResponse: The generated response
     """
     return await handler.send_message(session_id, request)
+
 
 @router.post(
     "/documents",
@@ -60,7 +61,7 @@ async def ingest_document(
 ) -> None:
     """
     Ingest a document for use in RAG responses.
-    
+
     Parameters:
         request: Document content and metadata
     """

@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Dict, Optional
+from typing import Dict
 from uuid import uuid4
 from ..value_objects.message_type import MessageType
+
 
 @dataclass
 class Message:
@@ -21,4 +22,5 @@ class Message:
         """Validates the message role after initialization"""
         valid_roles = {"user", "assistant", "system", "function"}
         if self.role not in valid_roles:
-            raise ValueError(f"Invalid role: {self.role}. Must be one of {valid_roles}")
+            raise ValueError(f"Invalid role: {self.role}." +
+                             "Must be one of {valid_roles}")

@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class LoggingMiddleware(BaseHTTPMiddleware):
     """
     Middleware for logging requests and responses.
@@ -13,22 +14,22 @@ class LoggingMiddleware(BaseHTTPMiddleware):
     """
     async def dispatch(self, request: Request, call_next):
         start_time = time.time()
-        
+
         # Log request
         logger.info(f"Request: {request.method} {request.url}")
-        
+
         try:
             response = await call_next(request)
-            
+
             # Log response timing
             duration = time.time() - start_time
             logger.info(
                 f"Response: {response.status_code} "
                 f"Duration: {duration:.3f}s"
             )
-            
+
             return response
-            
+
         except Exception as e:
             logger.error(f"Error processing request: {str(e)}")
             return JSONResponse(
@@ -38,6 +39,7 @@ class LoggingMiddleware(BaseHTTPMiddleware):
                     "code": "INTERNAL_ERROR"
                 }
             )
+
 
 class RateLimitMiddleware(BaseHTTPMiddleware):
     """
@@ -52,7 +54,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         # Get client IP
         client_ip = request.client.host
-        
+
         # Check rate limit
         current_time = time.time()
         if not self._check_rate_limit(client_ip, current_time):
@@ -63,21 +65,21 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
                     "code": "RATE_LIMIT_EXCEEDED"
                 }
             )
-        
+
         return await call_next(request)
 
     def _check_rate_limit(self, client_ip: str, current_time: float) -> bool:
         # Clean old requests
         window_start = current_time - 3600  # 1 hour window
-        
+
         if client_ip in self.requests:
             self.requests[client_ip] = [
                 t for t in self.requests[client_ip]
                 if t > window_start
             ]
-            
+
             if len(self.requests[client_ip]) >= self.rate_limit:
                 return False
-                
+
         self.requests.setdefault(client_ip, []).append(current_time)
         return True
